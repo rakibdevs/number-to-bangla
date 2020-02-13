@@ -1,0 +1,26 @@
+{
+    "name": "rakibhstu/number-to-bangla",
+    "description": "number-to-bangla is a Laravel package to convert English numbers to Bangla number or Bangla text, Bangla month name and Bangla Money Format",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Md. Rakibul Islam",
+            "email": "rakib1708@gmail.com",
+            "website": "rakibhstu.com",
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Rakibhstu\\Banglanumber\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Rakibhstu\\Banglanumber\\NumberToBanglaServiceProvider"
+            ]
+        }
+    }
+}
