@@ -10,9 +10,24 @@ for Laravel 5.5+.
 
 ## Installation
 
-1. Add a Composer dependency and install the package.
+Install the package through [Composer](http://getcomposer.org).
+On the command line:
 
-    ```bash
-    composer require rakibhstu/number-to-bangla
-    ```
+```
+composer require rakibhstu/number-to-bangla
+```
+
+## Configuration
+
+Add the following to your `providers` array in `config/app.php`:
+
+```php
+'providers' => [
+    // ...
+
+    Rakibhstu\Banglanumber\NumberToBanglaServiceProvider::class,
+],
+```
+
+## Usage
 
