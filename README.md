@@ -5,7 +5,15 @@
 [![GitHub stars](https://img.shields.io/github/stars/rakibhstu/number-to-bangla)](https://github.com/rakibhstu/number-to-bangla/stargazers)
 [![GitHub license](https://img.shields.io/github/license/rakibhstu/number-to-bangla)](https://github.com/rakibhstu/number-to-bangla/blob/master/LICENSE)
 
-Laravel package to convert English numbers to Bangla number or Bangla text, Bangla month name and Bangla Money Format for Laravel 5.5+.
+Laravel package to convert English numbers to Bangla number or Bangla text, Bangla month name and Bangla Money Format for Laravel 5.5+. Maximum possible number to covert in Bangla word is 999999999999999
+Example,
+| Operation | English Input | Bangla Output |
+| --- | --- | --- |
+| Text (Integer) | 13459 |তেরো হাজার চার শত ঊনষাট|
+| Text (Float) | 1234.05 |এক হাজার তিন শত পঁয়তাল্লিশ দশমিক শূন্য পাঁচ|
+| Number | 1234.5 |১৩৪৫.৫|
+| Text Money Format | 1345.50 |এক হাজার তিন শত পঁয়তাল্লিশ টাকা পঞ্চাশ পয়সা|
+| Month | 12 |ডিসেম্বর|
 
 
 ## Installation
