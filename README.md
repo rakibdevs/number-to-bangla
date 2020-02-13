@@ -5,7 +5,7 @@
 [![Join newsletter](https://img.shields.io/badge/join-newsletter-00cc99.svg)]()
 [![Follow twitter](https://img.shields.io/badge/follow-twitter-00cc99.svg)]()
 
-This repository contains the CKFinder 3 Package for Laravel 5.5+.
+for Laravel 5.5+.
 
 
 ## Installation
