@@ -1,9 +1,9 @@
-# Number to Bangla Number, Word or Month Name Laravel 5.5+ [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=Check%20out%20CKFinder%20package%20for%20Laravel%20&url=https://github.com/rakibhstu/number-to-bangla)
+## Number to Bangla Number, Word or Month Name Laravel 5.5+ [![Twitter](https://img.shields.io/twitter/url?style=social)](https://twitter.com/intent/tweet?text=Wow:&url=https%3A%2F%2Fgithub.com%2Frakibhstu%2Fnumber-to-bangla%2F)
 
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-[![Packagist]()]()
-[![Join newsletter](https://img.shields.io/badge/join-newsletter-00cc99.svg)]()
-[![Follow twitter](https://img.shields.io/badge/follow-twitter-00cc99.svg)]()
+
+
+[![GitHub stars](https://img.shields.io/github/stars/rakibhstu/number-to-bangla)](https://github.com/rakibhstu/number-to-bangla/stargazers)
+[![GitHub license](https://img.shields.io/github/license/rakibhstu/number-to-bangla)](https://github.com/rakibhstu/number-to-bangla/blob/master/LICENSE)
 
 for Laravel 5.5+.
 
