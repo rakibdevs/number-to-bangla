@@ -104,7 +104,7 @@ class NumberToBangla
     	}
 
     	if($num >= 1 && $num <=12 ){
-			return $this->bn_month[$num];
+			return $this->bn_month[(int)$num];
     	}
     	return false;
     	
