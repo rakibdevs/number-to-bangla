@@ -40,4 +40,64 @@ Add the following to your `providers` array in `config/app.php`:
 ```
 
 ## Usage
+Here you can see some example of just how simple this package is to use.
+
+```php
+use Rakibhstu\Banglanumber\NumberToBangla;
+
+$numto = new NumberToBangla();
+
+// If you want to convert any number (Integer of Float) into Bangla Word
+$text = $numto->bnWord(13459);    // Output:  তেরো হাজার চার শত ঊনষাট
+$text = $numto->bnWord(1345.05);  // Output:  এক হাজার তিন শত পঁয়তাল্লিশ দশমিক শূন্য পাঁচ
+
+
+```
+### Number to Bangla Word 
+Use `bnWord()` to convert any number into bangla word. Example,
+
+```php
+
+// Integer
+$text = $numto->bnWord(13459);    // Output:  তেরো হাজার চার শত ঊনষাট
+
+// Floar
+$text = $numto->bnWord(1345.05);    // Output: এক হাজার তিন শত পঁয়তাল্লিশ দশমিক শূন্য পাঁচ
+$text = $numto->bnWord(345675.105); // Output: তিন লক্ষ পঁয়তাল্লিশ হাজার ছয় শত পঁচাত্তর দশমিক এক শূন্য পাঁচ
+
+
+```
+
+### Number to Bangla Money Format
+Use `bnMoney()` to convert any number into bangla money format with 'টাকা' & 'পয়সা'. Example,
+
+```php
+$text = $numto->bnMoney(13459);     // Output:  তেরো হাজার চার শত ঊনষাট টাকা
+$text = $numto->bnMoney(13459.05);  // Output:  তেরো হাজার চার শত ঊনষাট টাকা পাঁচ পয়সা
+$text = $numto->bnMoney(13459.5);   // Output:  তেরো হাজার চার শত ঊনষাট টাকা পঞ্চাশ পয়সা
+
+```
+
+### Number to Bangla Number
+Use `bnNum()` to convert any number into bangla number. Example,
+
+```php
+$text = $numto->bnWord(13459);    // Output:  ১৩৪৫৯
+$text = $numto->bnWord(2334.768); // Output:  ২৩৩৪.৭৬৮
+
+```
+
+### Number to Month Name in Bangla
+Use `bnMonth()` to convert any number into bangla number. Input Limit (1-12) Example,
+
+```php
+$text = $numto->bnMonth(1);    // Output:  জানুয়ারি 
+$text = $numto->bnMonth(4);    // Output:  এপ্রিল
+
+```
+
+
+## License
+
+Number to Bangla is licensed under [The MIT License (MIT)](LICENSE).
 
