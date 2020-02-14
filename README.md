@@ -61,7 +61,7 @@ Use `bnWord()` to convert any number into bangla word. Example,
 // Integer
 $text = $numto->bnWord(13459);    // Output:  তেরো হাজার চার শত ঊনষাট
 
-// Floar
+// Float
 $text = $numto->bnWord(1345.05);    // Output: এক হাজার তিন শত পঁয়তাল্লিশ দশমিক শূন্য পাঁচ
 $text = $numto->bnWord(345675.105); // Output: তিন লক্ষ পঁয়তাল্লিশ হাজার ছয় শত পঁচাত্তর দশমিক এক শূন্য পাঁচ
 
