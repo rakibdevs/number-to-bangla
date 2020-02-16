@@ -137,7 +137,7 @@ class NumberToBangla
     	$crore = (int) ($num/10000000);
     	if($crore != 0){
     		if($crore > 99){
-    			$text .= $this->toWord($crore).' কোটি '; 
+    			$text .= $this->bnWord($crore).' কোটি '; 
     		}else{
 	    		$text .= $this->words[$crore].' কোটি ';
     		}
