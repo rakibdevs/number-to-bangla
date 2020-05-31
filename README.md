@@ -28,7 +28,8 @@ composer require rakibhstu/number-to-bangla
 ```
 
 
-## Configuration
+## Configuration 
+If Laravel > 7, no need to add provider
 
 Add the following to your `providers` array in `config/app.php`:
 
