@@ -1,10 +1,10 @@
 ## Number to Bangla Number, Word or Month Name in Laravel 
 
-![Packagist](https://img.shields.io/packagist/dt/rakibhstu/number-to-bangla)
-[![GitHub stars](https://img.shields.io/github/stars/rakibhstu/number-to-bangla)](https://github.com/rakibhstu/number-to-bangla/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/rakibhstu/number-to-bangla)](https://github.com/rakibhstu/number-to-bangla/network)
-[![GitHub issues](https://img.shields.io/github/issues/rakibhstu/number-to-bangla)](https://github.com/rakibhstu/number-to-bangla/issues)
-[![GitHub license](https://img.shields.io/github/license/rakibhstu/number-to-bangla)](https://github.com/rakibhstu/number-to-bangla/blob/master/LICENSE)
+![Packagist](https://img.shields.io/packagist/dt/rakibul-dev/number-to-bangla)
+[![GitHub stars](https://img.shields.io/github/stars/rakibul-dev/number-to-bangla)](https://github.com/rakibhstu/number-to-bangla/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/rakibul-dev/number-to-bangla)](https://github.com/rakibhstu/number-to-bangla/network)
+[![GitHub issues](https://img.shields.io/github/issues/rakibul-dev/number-to-bangla)](https://github.com/rakibhstu/number-to-bangla/issues)
+[![GitHub license](https://img.shields.io/github/license/rakibul-dev/number-to-bangla)](https://github.com/rakibhstu/number-to-bangla/blob/master/LICENSE)
 [![Twitter](https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Fpackagist.org%2Fpackages%2Frakibhstu%2Fnumber-to-bangla)](https://twitter.com/intent/tweet?text=Wow:&url=https%3A%2F%2Fpackagist.org%2Fpackages%2Frakibhstu%2Fnumber-to-bangla)
 
 Laravel package to convert English numbers to Bangla number or Bangla text, Bangla month name and Bangla Money Format for Laravel 5.5+. Maximum possible number to covert in Bangla word is 999999999999999
@@ -24,7 +24,7 @@ Install the package through [Composer](http://getcomposer.org).
 On the command line:
 
 ```
-composer require rakibhstu/number-to-bangla
+composer require rakibul-dev/number-to-bangla
 ```
 
 
