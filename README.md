@@ -23,8 +23,7 @@ Example,
 Install the package through [Composer](http://getcomposer.org).
 On the command line:
 
-```
-composer require rakibul-dev/number-to-bangla
+```composer require rakibhstu/number-to-bangla 'dev-master'
 ```
 
 
