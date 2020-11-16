@@ -1,6 +1,6 @@
 ## Number to Bangla Number, Word or Month Name in Laravel 
 
-![Packagist](https://img.shields.io/packagist/dt/rakibul-dev/number-to-bangla)
+![Packagist](https://img.shields.io/packagist/dt/rakibhstu/number-to-bangla)
 [![GitHub stars](https://img.shields.io/github/stars/rakibul-dev/number-to-bangla)](https://github.com/rakibhstu/number-to-bangla/stargazers)
 [![GitHub forks](https://img.shields.io/github/forks/rakibul-dev/number-to-bangla)](https://github.com/rakibhstu/number-to-bangla/network)
 [![GitHub issues](https://img.shields.io/github/issues/rakibul-dev/number-to-bangla)](https://github.com/rakibhstu/number-to-bangla/issues)
