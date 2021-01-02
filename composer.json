@@ -1,14 +1,15 @@
 {
     "name": "rakibhstu/number-to-bangla",
+    "version": "1.0",
     "description": "Laravel package to convert English numbers to Bangla number or Bangla text, Bangla month name and Bangla Money Format",
     "keywords": ["laravel","Laravel-number-bangla","number-bangla","number-month"],
-    "homepage": "https://github.com/rakibhstu/number-to-bangla",
+    "homepage": "https://github.com/rakibul-dev/number-to-bangla",
     "license": "MIT",
     "authors": [
         {
             "name": "Md. Rakibul Islam",
             "email": "rakib1708@gmail.com",
-            "website": "https:://rakibhstu.com"
+            "website": "https:://rakibul.dev"
         }
     ],
     "require": {
