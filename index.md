@@ -9,7 +9,6 @@
 
 Laravel package to convert English numbers to Bangla number or Bangla text, Bangla month name and Bangla Money Format for Laravel 5.5+. Maximum possible number to covert in Bangla word is 999999999999999
 Example,
-
 | Operation | English Input | Bangla Output |
 | --- | --- | --- |
 | Text (Integer) | 13459 |তেরো হাজার চার শত ঊনষাট|
@@ -17,6 +16,7 @@ Example,
 | Number | 1345.5 |১৩৪৫.৫|
 | Text Money Format | 1345.50 |এক হাজার তিন শত পঁয়তাল্লিশ টাকা পঞ্চাশ পয়সা|
 | Month | 12 |ডিসেম্বর|
+| Comma (Lakh) | 121212121 |১২,১২,১২,১২১|
 
 
 ## Installation
@@ -25,7 +25,7 @@ Install the package through [Composer](http://getcomposer.org).
 On the command line:
 
 ```
-composer require rakibhstu/number-to-bangla 'dev-master'
+composer require rakibhstu/number-to-bangla '1.0'
 
 ```
 
@@ -85,7 +85,6 @@ $text = $numto->bnMoney(13459.5);   // Output:  তেরো হাজার চ
 ### Number to Bangla Number
 Use `bnNum()` to convert any number into bangla number. Example,
 
-
 ```php
 $text = $numto->bnNum(13459);    // Output:  ১৩৪৫৯
 $text = $numto->bnNum(2334.768); // Output:  ২৩৩৪.৭৬৮
@@ -99,6 +98,13 @@ Use `bnMonth()` to convert any number into bangla number. Input Limit (1-12) Exa
 $text = $numto->bnMonth(1);    // Output:  জানুয়ারি 
 $text = $numto->bnMonth(4);    // Output:  এপ্রিল
 
+```
+
+### Comma separated number
+Use `bnCommaLakh()` to convert any number into bangla number. Example,
+
+```php
+$text = $numto->bnCommaLakh(12121212);    // Output:  ১,২১,২১,২১২
 ```
 
 
