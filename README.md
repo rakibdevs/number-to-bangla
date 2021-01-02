@@ -16,7 +16,7 @@ Example,
 | Number | 1345.5 |১৩৪৫.৫|
 | Text Money Format | 1345.50 |এক হাজার তিন শত পঁয়তাল্লিশ টাকা পঞ্চাশ পয়সা|
 | Month | 12 |ডিসেম্বর|
-| Comma (Lakh) | 121212121 |12,12,12,121|
+| Comma (Lakh) | 121212121 |১২,১২,১২,১২১|
 
 
 ## Installation
@@ -104,7 +104,7 @@ $text = $numto->bnMonth(4);    // Output:  এপ্রিল
 Use `bnCommaLakh()` to convert any number into bangla number. Example,
 
 ```php
-$text = $numto->bnCommaLakh(12121212);    // Output:  1,21,21,212 
+$text = $numto->bnCommaLakh(12121212);    // Output:  ১,২১,২১,২১২
 ```
 
 
