@@ -1,37 +1,106 @@
-## Welcome to GitHub Pages
+## Number to Bangla Number, Word or Month Name in Laravel 
 
-You can use the [editor on GitHub](https://github.com/rakibul-dev/number-to-bangla/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+![Packagist](https://img.shields.io/packagist/dt/rakibhstu/number-to-bangla)
+[![GitHub stars](https://img.shields.io/github/stars/rakibul-dev/number-to-bangla)](https://github.com/rakibhstu/number-to-bangla/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/rakibul-dev/number-to-bangla)](https://github.com/rakibhstu/number-to-bangla/network)
+[![GitHub issues](https://img.shields.io/github/issues/rakibul-dev/number-to-bangla)](https://github.com/rakibhstu/number-to-bangla/issues)
+[![GitHub license](https://img.shields.io/github/license/rakibul-dev/number-to-bangla)](https://github.com/rakibhstu/number-to-bangla/blob/master/LICENSE)
+[![Twitter](https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Fpackagist.org%2Fpackages%2Frakibhstu%2Fnumber-to-bangla)](https://twitter.com/intent/tweet?text=Wow:&url=https%3A%2F%2Fpackagist.org%2Fpackages%2Frakibhstu%2Fnumber-to-bangla)
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+Laravel package to convert English numbers to Bangla number or Bangla text, Bangla month name and Bangla Money Format for Laravel 5.5+. Maximum possible number to covert in Bangla word is 999999999999999
+Example,
+| Operation | English Input | Bangla Output |
+| --- | --- | --- |
+| Text (Integer) | 13459 |তেরো হাজার চার শত ঊনষাট|
+| Text (Float) | 1345.05 |এক হাজার তিন শত পঁয়তাল্লিশ দশমিক শূন্য পাঁচ|
+| Number | 1345.5 |১৩৪৫.৫|
+| Text Money Format | 1345.50 |এক হাজার তিন শত পঁয়তাল্লিশ টাকা পঞ্চাশ পয়সা|
+| Month | 12 |ডিসেম্বর|
 
-### Markdown
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+## Installation
 
-```markdown
-Syntax highlighted code block
+Install the package through [Composer](http://getcomposer.org).
+On the command line:
 
-# Header 1
-## Header 2
-### Header 3
+```
+composer require rakibhstu/number-to-bangla 'dev-master'
 
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
 
-### Jekyll Themes
+## Configuration 
+If Laravel > 7, no need to add provider
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/rakibul-dev/number-to-bangla/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+Add the following to your `providers` array in `config/app.php`:
 
-### Support or Contact
+```php
+'providers' => [
+    // ...
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+    Rakibhstu\Banglanumber\NumberToBanglaServiceProvider::class,
+],
+```
+
+## Usage
+Here you can see some example of just how simple this package is to use.
+
+```php
+use Rakibhstu\Banglanumber\NumberToBangla;
+
+$numto = new NumberToBangla();
+
+// If you want to convert any number (Integer of Float) into Bangla Word
+$text = $numto->bnWord(13459);    // Output:  তেরো হাজার চার শত ঊনষাট
+$text = $numto->bnWord(1345.05);  // Output:  এক হাজার তিন শত পঁয়তাল্লিশ দশমিক শূন্য পাঁচ
+
+
+```
+### Number to Bangla Word 
+Use `bnWord()` to convert any number into bangla word. Example,
+
+```php
+
+// Integer
+$text = $numto->bnWord(13459);    // Output:  তেরো হাজার চার শত ঊনষাট
+
+// Float
+$text = $numto->bnWord(1345.05);    // Output: এক হাজার তিন শত পঁয়তাল্লিশ দশমিক শূন্য পাঁচ
+$text = $numto->bnWord(345675.105); // Output: তিন লক্ষ পঁয়তাল্লিশ হাজার ছয় শত পঁচাত্তর দশমিক এক শূন্য পাঁচ
+
+
+```
+
+### Number to Bangla Money Format
+Use `bnMoney()` to convert any number into bangla money format with 'টাকা' & 'পয়সা'. Example,
+
+```php
+$text = $numto->bnMoney(13459);     // Output:  তেরো হাজার চার শত ঊনষাট টাকা
+$text = $numto->bnMoney(13459.05);  // Output:  তেরো হাজার চার শত ঊনষাট টাকা পাঁচ পয়সা
+$text = $numto->bnMoney(13459.5);   // Output:  তেরো হাজার চার শত ঊনষাট টাকা পঞ্চাশ পয়সা
+
+```
+
+### Number to Bangla Number
+Use `bnNum()` to convert any number into bangla number. Example,
+
+```php
+$text = $numto->bnNum(13459);    // Output:  ১৩৪৫৯
+$text = $numto->bnNum(2334.768); // Output:  ২৩৩৪.৭৬৮
+
+```
+
+### Number to Month Name in Bangla
+Use `bnMonth()` to convert any number into bangla number. Input Limit (1-12) Example,
+
+```php
+$text = $numto->bnMonth(1);    // Output:  জানুয়ারি 
+$text = $numto->bnMonth(4);    // Output:  এপ্রিল
+
+```
+
+
+## License
+
+Number to Bangla is licensed under [The MIT License (MIT)](LICENSE).
+
