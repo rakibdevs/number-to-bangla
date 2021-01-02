@@ -16,7 +16,7 @@ Example,
 | Number | 1345.5 |১৩৪৫.৫|
 | Text Money Format | 1345.50 |এক হাজার তিন শত পঁয়তাল্লিশ টাকা পঞ্চাশ পয়সা|
 | Month | 12 |ডিসেম্বর|
-| Comma (Lakh) | 12,12,12,121 ||
+| Comma (Lakh) | 121212121 |12,12,12,121|
 
 
 ## Installation
