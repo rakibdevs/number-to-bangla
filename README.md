@@ -16,6 +16,7 @@ Example,
 | Number | 1345.5 |১৩৪৫.৫|
 | Text Money Format | 1345.50 |এক হাজার তিন শত পঁয়তাল্লিশ টাকা পঞ্চাশ পয়সা|
 | Month | 12 |ডিসেম্বর|
+| Comma (Lakh) | 12,12,12,121 ||
 
 
 ## Installation
@@ -24,7 +25,7 @@ Install the package through [Composer](http://getcomposer.org).
 On the command line:
 
 ```
-composer require rakibhstu/number-to-bangla 'dev-master'
+composer require rakibhstu/number-to-bangla '1.0'
 
 ```
 
@@ -97,6 +98,13 @@ Use `bnMonth()` to convert any number into bangla number. Input Limit (1-12) Exa
 $text = $numto->bnMonth(1);    // Output:  জানুয়ারি 
 $text = $numto->bnMonth(4);    // Output:  এপ্রিল
 
+```
+
+### Comma separated number
+Use `bnCommaLakh()` to convert any number into bangla number. Example,
+
+```php
+$text = $numto->bnCommaLakh(12121212);    // Output:  1,21,21,212 
 ```
 
 
