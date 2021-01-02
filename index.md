@@ -84,6 +84,7 @@ $text = $numto->bnMoney(13459.5);   // Output:  তেরো হাজার চ
 ### Number to Bangla Number
 Use `bnNum()` to convert any number into bangla number. Example,
 
+
 ```php
 $text = $numto->bnNum(13459);    // Output:  ১৩৪৫৯
 $text = $numto->bnNum(2334.768); // Output:  ২৩৩৪.৭৬৮
