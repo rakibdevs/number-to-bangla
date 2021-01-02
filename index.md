@@ -9,6 +9,7 @@
 
 Laravel package to convert English numbers to Bangla number or Bangla text, Bangla month name and Bangla Money Format for Laravel 5.5+. Maximum possible number to covert in Bangla word is 999999999999999
 Example,
+
 | Operation | English Input | Bangla Output |
 | --- | --- | --- |
 | Text (Integer) | 13459 |তেরো হাজার চার শত ঊনষাট|
