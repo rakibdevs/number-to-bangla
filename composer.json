@@ -5,13 +5,13 @@
     "keywords": ["laravel","Laravel-number-bangla","number-bangla","number-month"],
     "homepage": "https://github.com/rakibul-dev/number-to-bangla",
     "license": "MIT",
-    "authors": [
+    "authors": {
         {
             "name": "Md. Rakibul Islam",
             "email": "rakib1708@gmail.com",
             "website": "https:://rakibul.dev"
         }
-    ],
+    },
     "require": {
         "php": "^7.1.3"
     },
