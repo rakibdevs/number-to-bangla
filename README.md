@@ -25,7 +25,7 @@ Install the package through [Composer](http://getcomposer.org).
 On the command line:
 
 ```
-composer require rakibhstu/number-to-bangla '1.0'
+composer require rakibhstu/number-to-bangla
 
 ```
 
