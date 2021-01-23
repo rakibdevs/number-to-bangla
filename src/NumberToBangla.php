@@ -119,7 +119,7 @@ class NumberToBangla
         }
 
         $n = preg_replace("/(\d+?)(?=(\d\d)+(\d)(?!\d))(\.\d+)?/i", "$1,", $num);
-        return strtr($n,$this->numbers)
+        return strtr($n,$this->numbers);
          
     }
     
