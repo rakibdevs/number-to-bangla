@@ -5,7 +5,8 @@
 [![GitHub forks](https://img.shields.io/github/forks/rakibul-dev/number-to-bangla)](https://github.com/rakibhstu/number-to-bangla/network)
 [![GitHub issues](https://img.shields.io/github/issues/rakibul-dev/number-to-bangla)](https://github.com/rakibhstu/number-to-bangla/issues)
 [![GitHub license](https://img.shields.io/github/license/rakibul-dev/number-to-bangla)](https://github.com/rakibhstu/number-to-bangla/blob/master/LICENSE)
-[![Twitter](https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Fpackagist.org%2Fpackages%2Frakibhstu%2Fnumber-to-bangla)](https://twitter.com/intent/tweet?text=Wow:&url=https%3A%2F%2Fpackagist.org%2Fpackages%2Frakibhstu%2Fnumber-to-bangla)
+[![MadeWithLaravel.com shield](https://madewithlaravel.com/storage/repo-shields/2818-shield.svg)](https://madewithlaravel.com/p/number-to-bangla/shield-link)
+
 
 Laravel package to convert English numbers to Bangla number or Bangla text, Bangla month name and Bangla Money Format for Laravel 5.5+. Maximum possible number to covert in Bangla word is 999999999999999
 Example,
