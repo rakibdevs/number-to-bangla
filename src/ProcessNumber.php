@@ -17,11 +17,11 @@ class ProcessNumber
     public  function isValid($number)
     {
         if(!is_numeric($number)){
-            throw InvalidNumber::message($number);
+            throw InvalidNumber::message();
         }
 
         if($number > 999999999999999 || strpos($number, 'E') !== false){
-            throw InvalidRange::message($number);
+            throw InvalidRange::message();
         }
     }
 
