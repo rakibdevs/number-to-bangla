@@ -11,21 +11,6 @@ class ProcessNumber
 
     protected  $bn_num = array('শূন্য', 'এক', 'দুই', 'তিন', 'চার', 'পাঁচ', 'ছয়', 'সাত', 'আট', 'নয়');
 
-    protected  $bn_month = array(
-                                    '1' => 'জানুয়ারি', 
-                                    '2' => 'ফেব্রুয়ারি', 
-                                    '3' => 'মার্চ', 
-                                    '4' => 'এপ্রিল', 
-                                    '5' => 'মে',
-                                    '6' => 'জুন', 
-                                    '7' => 'জুলাই', 
-                                    '8' => 'আগস্ট', 
-                                    '9' => 'সেপ্টেম্বর',
-                                    '10' => 'অক্টোবর', 
-                                    '11' => 'নভেম্বর', 
-                                    '12' => 'ডিসেম্বর'
-                                );
-
     protected  $numbers = array('০','১','২','৩','৪','৫','৬','৭','৮','৯');
 
 
@@ -92,17 +77,6 @@ class ProcessNumber
         }
     
 
-    }
-
-
-    public  function bnMonth($number)
-    {
-        $this->isValid($number);
-
-        if($number >= 1 && $number <= 12 ){
-            return $this->bn_month[(int)$number];
-        }
-        
     }
 
     protected function bnCommaLakh($number)

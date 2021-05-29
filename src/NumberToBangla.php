@@ -3,14 +3,18 @@
 namespace Rakibhstu\Banglanumber;
 
 use Rakibhstu\Banglanumber\ProcessNumber;
+use Rakibhstu\Banglanumber\ProcessDate;
 
 class NumberToBangla
 {
     protected $process;
 
+    protected $date;
+
     public function __construct()
     {
         $this->process = new ProcessNumber;
+        $this->date    = new ProcessDate;
     }
 
     public function bnNum($number)
@@ -36,7 +40,7 @@ class NumberToBangla
 
     public  function bnMonth($number)
     {
-        return $this->process->bnMonth($number);
+        return $this->date->bnMonth($number);
         
     }
 
