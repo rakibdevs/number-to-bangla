@@ -8,15 +8,23 @@
         {
             "name": "Md. Rakibul Islam",
             "email": "rakib1708@gmail.com",
-            "website": "https://rakibul.dev"
+            "homepage": "https://rakibul.dev"
         }
     ],
     "require": {
         "php": "^7.1.3"
     },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
+    },
     "autoload": {
         "psr-4": {
             "Rakibhstu\\Banglanumber\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Rakibhstu\\Banglanumber\\Test\\": "tests"
         }
     },
     "extra": {
