@@ -1,0 +1,12 @@
+<?php
+namespace Rakibhstu\Banglanumber\Exceptions;
+
+use Exception;
+
+class InvalidNumber extends Exception:static
+{
+	public static function message():static
+	{
+		return new static("The given value is not a valid number.");
+	}
+}
