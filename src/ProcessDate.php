@@ -2,7 +2,10 @@
 
 namespace Rakibhstu\Banglanumber;
 
-class ProcessNumber
+use Rakibhstu\Banglanumber\Exceptions\InvalidNumber;
+use Rakibhstu\Banglanumber\Exceptions\InvalidRange;
+
+class ProcessDate
 {
 
     protected  $bn_month = array(

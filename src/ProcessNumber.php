@@ -2,6 +2,9 @@
 
 namespace Rakibhstu\Banglanumber;
 
+use Rakibhstu\Banglanumber\Exceptions\InvalidNumber;
+use Rakibhstu\Banglanumber\Exceptions\InvalidRange;
+
 class ProcessNumber
 {
 
