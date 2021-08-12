@@ -24,7 +24,7 @@ class NumberToBangla
 
 
     public  function bnWord($number)
-    {
+    { 
         return $this->process->bnWord($number);
     }
 
