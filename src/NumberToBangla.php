@@ -25,7 +25,7 @@ class NumberToBangla
 
     public  function bnWord($number)
     {
-        return $this->process->bnNum($number);
+        return $this->process->bnWord($number);
     }
 
     public  function bnMoney($number)
