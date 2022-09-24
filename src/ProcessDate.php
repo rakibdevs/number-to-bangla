@@ -7,8 +7,7 @@ use Rakibhstu\Banglanumber\Exceptions\InvalidRange;
 
 class ProcessDate
 {
-
-    protected  $bn_month = array(
+    protected  $bn_month = [
         '1' => 'জানুয়ারি',
         '2' => 'ফেব্রুয়ারি',
         '3' => 'মার্চ',
@@ -21,9 +20,20 @@ class ProcessDate
         '10' => 'অক্টোবর',
         '11' => 'নভেম্বর',
         '12' => 'ডিসেম্বর'
-    );
+    ];
 
-    protected  $numbers = array('০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯');
+    protected  $numbers = [
+        '০',
+        '১',
+        '২',
+        '৩',
+        '৪',
+        '৫',
+        '৬',
+        '৭',
+        '৮',
+        '৯'
+    ];
 
 
     public function isValid($number)
@@ -44,8 +54,8 @@ class ProcessDate
 
         if ($number >= 1 && $number <= 12) {
             return $this->bn_month[(int)$number];
-        } else {
-            throw InvalidRange::message(12);
         }
+
+        throw InvalidRange::message(12);
     }
 }

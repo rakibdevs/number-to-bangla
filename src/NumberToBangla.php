@@ -13,15 +13,14 @@ class NumberToBangla
 
     public function __construct()
     {
-        $this->process = new ProcessNumber;
-        $this->date    = new ProcessDate;
+        $this->process = new ProcessNumber();
+        $this->date    = new ProcessDate();
     }
 
     public function bnNum($number)
     {
         return $this->process->bnNum($number);
     }
-
 
     public  function bnWord($number)
     {
@@ -38,7 +37,7 @@ class NumberToBangla
         return $this->process->bnCommaLakh($number);
     }
 
-    public  function bnMonth($number)
+    public function bnMonth($number)
     {
         return $this->date->bnMonth($number);
     }
