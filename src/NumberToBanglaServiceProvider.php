@@ -15,7 +15,7 @@ class NumberToBanglaServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton(NumberToBangla::class);
-        
+
         $this->app->alias(NumberToBangla::class, 'bangla-number');
     }
 
