@@ -1,4 +1,5 @@
 <?php
+
 namespace Rakibhstu\Banglanumber\Exceptions;
 
 use Exception;

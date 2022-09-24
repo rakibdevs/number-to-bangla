@@ -24,24 +24,22 @@ class NumberToBangla
 
 
     public  function bnWord($number)
-    { 
+    {
         return $this->process->bnWord($number);
     }
 
     public  function bnMoney($number)
-    {    
+    {
         return $this->process->bnMoney($number);
     }
 
     public function bnCommaLakh($number)
     {
-         return $this->process->bnCommaLakh($number);
+        return $this->process->bnCommaLakh($number);
     }
 
     public  function bnMonth($number)
     {
         return $this->date->bnMonth($number);
-        
     }
-
 }
