@@ -7,6 +7,9 @@ use Rakibhstu\Banglanumber\Exceptions\InvalidRange;
 
 class ProcessNumber
 {
+    /**
+     * @var string[]
+     */
     protected $words = [
         '',
         'এক',
@@ -110,6 +113,9 @@ class ProcessNumber
         'নিরানব্বই'
     ];
 
+    /**
+     * @var string[]
+     */
     protected $bn_num = [
         'শূন্য',
         'এক',
@@ -123,6 +129,9 @@ class ProcessNumber
         'নয়'
     ];
 
+    /**
+     * @var string[]
+     */
     protected $numbers = [
         '০',
         '১',
@@ -137,6 +146,10 @@ class ProcessNumber
     ];
 
 
+    /**
+     * @throws InvalidNumber
+     * @throws InvalidRange
+     */
     public function isValid($number)
     {
         if (!is_numeric($number)) {
@@ -148,6 +161,12 @@ class ProcessNumber
         }
     }
 
+    /**
+     * @param $number
+     * @return string
+     * @throws InvalidNumber
+     * @throws InvalidRange
+     */
     public function bnNum($number)
     {
         $this->isValid($number);
@@ -156,9 +175,15 @@ class ProcessNumber
     }
 
 
+    /**
+     * @param $number
+     * @return string
+     * @throws InvalidNumber
+     * @throws InvalidRange
+     */
     public function bnWord($number)
     {
-        $valid = $this->isValid($number);
+        $this->isValid($number);
 
         if ($number == 0) {
             return 'শূন্য';
@@ -171,6 +196,12 @@ class ProcessNumber
         return $this->toWord($number);
     }
 
+    /**
+     * @param $number
+     * @return string
+     * @throws InvalidNumber
+     * @throws InvalidRange
+     */
     public function bnMoney($number)
     {
         $this->isValid($number);
@@ -186,6 +217,10 @@ class ProcessNumber
         return $this->toWord($number) . ' টাকা ';
     }
 
+    /**
+     * @throws InvalidNumber
+     * @throws InvalidRange
+     */
     public function bnCommaLakh($number)
     {
         $this->isValid($number);
@@ -195,6 +230,10 @@ class ProcessNumber
         return strtr($n, $this->numbers);
     }
 
+    /**
+     * @param $num
+     * @return string
+     */
     protected function toWord($num)
     {
         $text = '';
@@ -228,7 +267,7 @@ class ProcessNumber
             $text .= $this->words[$hundred] . ' শত ';
         }
 
-        $hundred_div = (int) ($thousand_div % 100);
+        $hundred_div = $thousand_div % 100;
         if ($hundred_div > 0) {
             $text .= $this->words[$hundred_div];
         }
@@ -236,11 +275,15 @@ class ProcessNumber
         return $text;
     }
 
+    /**
+     * @param $num
+     * @return string
+     */
     protected function toDecimalWord($num)
     {
         $text = '';
         $decimalParts = str_split($num);
-        foreach ($decimalParts as $key => $decimalPart) {
+        foreach ($decimalParts as $decimalPart) {
             $text .= $this->bn_num[$decimalPart] . ' ';
         }
 
@@ -249,7 +292,7 @@ class ProcessNumber
 
     /**
      * Convert float number to text
-     * 
+     *
      */
     private function convertFloatNumberToWord($number)
     {
@@ -264,7 +307,8 @@ class ProcessNumber
 
     /**
      * Convert float number to money format
-     * 
+     * @param $number
+     * @return string
      */
     private function convertFloatNumberToMoneyFormat($number)
     {
