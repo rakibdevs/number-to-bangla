@@ -7,7 +7,10 @@ use Rakibhstu\Banglanumber\Exceptions\InvalidRange;
 
 class ProcessDate
 {
-    protected  $bn_month = [
+    /**
+     * @var string[]
+     */
+    private $bn_month = [
         '1' => 'জানুয়ারি',
         '2' => 'ফেব্রুয়ারি',
         '3' => 'মার্চ',
@@ -22,21 +25,12 @@ class ProcessDate
         '12' => 'ডিসেম্বর'
     ];
 
-    protected  $numbers = [
-        '০',
-        '১',
-        '২',
-        '৩',
-        '৪',
-        '৫',
-        '৬',
-        '৭',
-        '৮',
-        '৯'
-    ];
 
-
-    public function isValid($number)
+    /**
+     * @throws InvalidNumber
+     * @throws InvalidRange
+     */
+    private function isValid($number)
     {
         if (!is_numeric($number)) {
             throw InvalidNumber::message();
@@ -48,6 +42,10 @@ class ProcessDate
     }
 
 
+    /**
+     * @throws InvalidNumber
+     * @throws InvalidRange
+     */
     public function bnMonth($number)
     {
         $this->isValid($number);

@@ -3,7 +3,6 @@
 namespace Rakibhstu\Banglanumber;
 
 use Illuminate\Support\ServiceProvider;
-use Rakibhstu\Banglanumber\NumberToBangla;
 
 class NumberToBanglaServiceProvider extends ServiceProvider
 {

@@ -10,6 +10,9 @@ use Illuminate\Support\Facades\Facade;
 
 class NumberToBangla extends Facade
 {
+    /**
+     * @return string
+     */
 	protected static function getFacadeAccessor(): string
     {
         return 'bangla-number';

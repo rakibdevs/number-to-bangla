@@ -2,41 +2,69 @@
 
 namespace Rakibhstu\Banglanumber;
 
-use Rakibhstu\Banglanumber\ProcessNumber;
-use Rakibhstu\Banglanumber\ProcessDate;
-
 class NumberToBangla
 {
-    protected $process;
+    /**
+     * @var ProcessNumber
+     */
+    private $process;
 
-    protected $date;
+    /**
+     * @var ProcessDate
+     */
+    private $date;
 
+    /**
+     * Number to Bangla Constructor
+     */
     public function __construct()
     {
         $this->process = new ProcessNumber();
         $this->date    = new ProcessDate();
     }
 
+    /**
+     * @param $number
+     * @return string
+     */
     public function bnNum($number)
     {
         return $this->process->bnNum($number);
     }
 
+    /**
+     * @param $number
+     * @return string
+     */
     public  function bnWord($number)
     {
         return $this->process->bnWord($number);
     }
 
+    /**
+     * @param $number
+     * @return string
+     */
     public  function bnMoney($number)
     {
         return $this->process->bnMoney($number);
     }
 
+    /**
+     * @param $number
+     * @return string
+     */
     public function bnCommaLakh($number)
     {
         return $this->process->bnCommaLakh($number);
     }
 
+    /**
+     * @param $number
+     * @return string
+     * @throws Exceptions\InvalidNumber
+     * @throws Exceptions\InvalidRange
+     */
     public function bnMonth($number)
     {
         return $this->date->bnMonth($number);
