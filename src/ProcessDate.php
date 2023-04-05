@@ -8,9 +8,9 @@ use Rakibhstu\Banglanumber\Exceptions\InvalidRange;
 class ProcessDate
 {
     /**
-     * @var string[]
+     * @var array
      */
-    private $bn_month = [
+    private array $month = [
         '1' => 'জানুয়ারি',
         '2' => 'ফেব্রুয়ারি',
         '3' => 'মার্চ',
@@ -27,6 +27,7 @@ class ProcessDate
 
 
     /**
+     * 
      * @throws InvalidNumber
      * @throws InvalidRange
      */
@@ -43,15 +44,19 @@ class ProcessDate
 
 
     /**
+     * Convert number into English Month Name
+     * 
+     * @param mixed $number
+     * @return ?string
      * @throws InvalidNumber
      * @throws InvalidRange
      */
-    public function bnMonth($number)
+    public function bnMonth(mixed $number): ?string
     {
         $this->isValid($number);
 
         if ($number >= 1 && $number <= 12) {
-            return $this->bn_month[(int)$number];
+            return $this->month[(int)$number];
         }
 
         throw InvalidRange::message(12);

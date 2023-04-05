@@ -13,7 +13,12 @@ class NumberToBanglaServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton(NumberToBangla::class);
+        $this->app->singleton(NumberToBangla::class, function ($app) {
+            return new NumberToBangla(
+                $app->make(ProcessNumber::class),
+                $app->make(ProcessDate::class)
+            );
+        });
 
         $this->app->alias(NumberToBangla::class, 'bangla-number');
     }

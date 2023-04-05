@@ -4,69 +4,62 @@ namespace Rakibhstu\Banglanumber;
 
 class NumberToBangla
 {
-    /**
-     * @var ProcessNumber
-     */
-    private $process;
-
-    /**
-     * @var ProcessDate
-     */
-    private $date;
-
-    /**
-     * Number to Bangla Constructor
-     */
-    public function __construct()
-    {
-        $this->process = new ProcessNumber();
-        $this->date    = new ProcessDate();
+    // To keep compatibility to use new NumberToBangla()
+    public function __construct(
+        protected ProcessNumber|null $processNumber = null,
+        protected ProcessDate|null $processDate = null
+    ) {
+        $this->processNumber = $processNumber ?? app(ProcessNumber::class);
+        $this->processDate = $processDate ?? app(ProcessDate::class);
     }
 
     /**
+     * Convert number into Bangla representation
      * @param $number
      * @return string
      */
-    public function bnNum($number)
+    public function bnNum($number): string
     {
-        return $this->process->bnNum($number);
+        return $this->processNumber->bnNum($number);
     }
 
     /**
+     * Convert number into Bangla Word
      * @param $number
      * @return string
      */
-    public  function bnWord($number)
+    public  function bnWord($number): string
     {
-        return $this->process->bnWord($number);
+        return $this->processNumber->bnWord($number);
     }
 
     /**
+     * Convert number into Bangla Money Format
      * @param $number
      * @return string
      */
-    public  function bnMoney($number)
+    public function bnMoney($number): string
     {
-        return $this->process->bnMoney($number);
+        return $this->processNumber->bnMoney($number);
     }
 
     /**
+     * Represent number in comma separator in Lakh, Crore format
      * @param $number
      * @return string
      */
-    public function bnCommaLakh($number)
+    public function bnCommaLakh($number): string
     {
-        return $this->process->bnCommaLakh($number);
+        return $this->processNumber->bnCommaLakh($number);
     }
 
     /**
+     * Convert number into English Month Name
      * @param $number
      * @return string
-     * @throws Exceptions\InvalidNumber
-     * @throws Exceptions\InvalidRange
      */
-    public function bnMonth($number)
+    public function bnMonth($number): string
     {
-        return $this->date->bnMonth($number);
+        return $this->processDate->bnMonth($number);
     }
 }
