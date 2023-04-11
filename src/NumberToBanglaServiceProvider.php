@@ -3,6 +3,7 @@
 namespace Rakibhstu\Banglanumber;
 
 use Illuminate\Support\ServiceProvider;
+use Rakibhstu\Banglanumber\Facades\NumberToBanglaFacade;
 
 class NumberToBanglaServiceProvider extends ServiceProvider
 {
@@ -20,7 +21,8 @@ class NumberToBanglaServiceProvider extends ServiceProvider
             );
         });
 
-        $this->app->alias(NumberToBangla::class, 'bangla-number');
+        $this->app->singleton('number-to-bangla', NumberToBangla::class);
+
     }
 
     /**
