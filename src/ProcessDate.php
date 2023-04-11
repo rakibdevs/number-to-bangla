@@ -7,6 +7,8 @@ use Rakibhstu\Banglanumber\Exceptions\InvalidRange;
 
 class ProcessDate
 {
+    use NumberValidator;
+
     /**
      * @var array
      */
@@ -25,24 +27,6 @@ class ProcessDate
         '12' => 'ডিসেম্বর'
     ];
 
-
-    /**
-     * 
-     * @throws InvalidNumber
-     * @throws InvalidRange
-     */
-    private function isValid($number)
-    {
-        if (!is_numeric($number)) {
-            throw InvalidNumber::message();
-        }
-
-        if ($number > 999999999999999 || strpos($number, 'E') !== false) {
-            throw InvalidRange::message();
-        }
-    }
-
-
     /**
      * Convert number into English Month Name
      * 
@@ -59,6 +43,6 @@ class ProcessDate
             return $this->month[(int)$number];
         }
 
-        throw InvalidRange::message(12);
+        throw new InvalidRange(12);
     }
 }

@@ -6,11 +6,8 @@ use Exception;
 
 class InvalidNumber extends Exception
 {
-    /**
-     * @return static
-     */
-	public static function message()
+    public function __construct()
 	{
-		return new static("The given value is not a valid number.");
+		parent::__construct('The given value is not a valid number.');
 	}
 }

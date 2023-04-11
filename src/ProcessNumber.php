@@ -7,6 +7,8 @@ use Rakibhstu\Banglanumber\Exceptions\InvalidRange;
 
 class ProcessNumber
 {
+    use NumberValidator;
+
     /**
      * @var array[]
      */
@@ -129,22 +131,6 @@ class ProcessNumber
         '৯'
     ];
 
-
-    /**
-     * @throws InvalidNumber
-     * @throws InvalidRange
-     */
-    protected function isValid($number)
-    {
-        if (!is_numeric($number)) {
-            throw InvalidNumber::message();
-        }
-
-        if ($number > 999999999999999 || strpos($number, 'E') !== false) {
-            throw InvalidRange::message();
-        }
-    }
-
     /**
      * Convert number into Bangla representation
      * 
@@ -209,6 +195,9 @@ class ProcessNumber
 
     /**
      * Represent number in comma separator in Lakh, Crore format
+     * 
+     * @param $number
+     * @return string
      * @throws InvalidNumber
      * @throws InvalidRange
      */
