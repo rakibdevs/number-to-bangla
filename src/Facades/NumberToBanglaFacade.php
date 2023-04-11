@@ -8,13 +8,13 @@ use Illuminate\Support\Facades\Facade;
  * @see \Rakibhstu\Banglanumber\NumberToBangla
  */
 
-class NumberToBangla extends Facade
+class NumberToBanglaFacade extends Facade
 {
     /**
      * @return string
      */
 	protected static function getFacadeAccessor(): string
     {
-        return 'bangla-number';
+        return 'number-to-bangla';
     }
 }
