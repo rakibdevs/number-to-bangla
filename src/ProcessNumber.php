@@ -299,7 +299,7 @@ class ProcessNumber
         $money  = number_format((float)$number, 2, '.', '');
         $decimalPart = explode(".", $money);
         $text = $this->toWord($decimalPart[0]) . ' টাকা ';
-        if (isset($decimalPart[1])) {
+        if (isset($decimalPart[1])&& (int)$decimalPart[1]>0) {
             $text .= $this->words[(int)$decimalPart[1]] . ' পয়সা';
         }
 
