@@ -1,50 +1,36 @@
-name: Tests
+name: PHP Composer
 
 on:
   push:
-    branches: [ master, main, feature/laravel-12x-support ]
+    branches: [ master ]
   pull_request:
-    branches: [ master, main ]
+    branches: [ master ]
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
-    
-    strategy:
-      fail-fast: false
-      matrix:
-        php: [8.0, 8.1, 8.2, 8.3]
-        laravel: [9.*, 10.*, 11.*]
-        include:
-          - laravel: 9.*
-            testbench: 7.*
-          - laravel: 10.*
-            testbench: 8.*
-          - laravel: 11.*
-            testbench: 9.*
-        exclude:
-          - php: 8.0
-            laravel: 10.*
-          - php: 8.0
-            laravel: 11.*
+  build:
 
-    name: PHP ${{ matrix.php }} - Laravel ${{ matrix.laravel }}
+    runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+    - uses: actions/checkout@v2
 
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: ${{ matrix.php }}
-          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv
-          coverage: none
+    - name: Validate composer.json and composer.lock
+      run: composer validate --strict
 
-      - name: Install dependencies
-        run: |
-          composer require "laravel/framework:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" --no-interaction --no-update
-          composer update --prefer-dist --no-interaction --no-progress
+    - name: Cache Composer packages
+      id: composer-cache
+      uses: actions/cache@v2
+      with:
+        path: vendor
+        key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-php-
 
-      - name: Execute tests
-        run: vendor/bin/phpunit
+    - name: Install dependencies
+      run: composer install --prefer-dist --no-progress
+
+    # Add a test script to composer.json, for instance: "test": "vendor/bin/phpunit"
+    # Docs: https://getcomposer.org/doc/articles/scripts.md
+
+    # - name: Run test suite
+    #   run: composer run-script test
