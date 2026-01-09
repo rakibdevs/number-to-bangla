@@ -1,10 +1,23 @@
 <?php
 
-namespace Tests;
+namespace Rakibhstu\Banglanumber\Tests;
 
-use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
+use Orchestra\Testbench\TestCase as Orchestra;
+use Rakibhstu\Banglanumber\NumberToBanglaServiceProvider;
 
-abstract class TestCase extends BaseTestCase
+abstract class TestCase extends Orchestra
 {
-    use CreatesApplication;
+    protected function getPackageProviders($app)
+    {
+        return [
+            NumberToBanglaServiceProvider::class,
+        ];
+    }
+
+    protected function getPackageAliases($app)
+    {
+        return [
+            'NumberToBangla' => \Rakibhstu\Banglanumber\NumberToBangla::class,
+        ];
+    }
 }
