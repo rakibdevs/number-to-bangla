@@ -131,6 +131,12 @@ class ProcessNumber
         '৯'
     ];
 
+    protected array $bnToEn = [
+        '০' => '0', '১' => '1', '২' => '2', '৩' => '3', '৪' => '4',
+        '৫' => '5', '৬' => '6', '৭' => '7', '৮' => '8', '৯' => '9'
+    ];
+    
+
     /**
      * Convert number into Bangla representation
      * 
@@ -304,5 +310,35 @@ class ProcessNumber
         }
 
         return $text;
+    }
+
+    /**
+     * Convert percentage to Bangla
+     */
+    public function bnPercentage(int|float $number, bool $asWord = false): string
+    {
+        if ($asWord) {
+            return $this->bnWord($number) . ' শতাংশ';
+        }
+        return $this->bnNum($number) . '%';
+    }
+
+    /**
+     * Parse Bangla number to English number
+     */
+    public function parseNum(string $banglaNumber): int|float
+    {
+        // Remove commas and spaces
+        $banglaNumber = str_replace([',', ' ', '৳'], '', $banglaNumber);
+        
+        // Convert Bangla digits to English
+        $englishNumber = strtr($banglaNumber, $this->bnToEn);
+        
+        // Check if it's a float
+        if (str_contains($englishNumber, '.')) {
+            return (float) $englishNumber;
+        }
+        
+        return (int) $englishNumber;
     }
 }
