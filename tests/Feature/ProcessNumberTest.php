@@ -39,7 +39,6 @@ class ProcessNumberTest extends TestCase
     /** @test */
     public function it_converts_integer_to_bangla_money()
     {
-        print_r($this->numto->bnMoney(13459));
         $this->assertStringContainsString(
             'ঊনষাট',
             $this->numto->bnMoney(13459)

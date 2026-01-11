@@ -29,105 +29,306 @@ Maximum possible number to convert in Bangla word is **999999999999999**
 - PHP 8.0 or higher
 - Laravel 9.x, 10.x, 11.x, or 12.x
 
-## Installation
+# Complete Usage Guide - NumberToBangla v2.0
 
-Install the package through [Composer](http://getcomposer.org):
+## 🚀 Installation
 
 ```bash
-composer require rakibhstu/number-to-bangla
+composer require rakibhstu/number-to-bangla:^2.0
 ```
 
-The package will automatically register itself through Laravel's package discovery.
+## 📖 Table of Contents
 
-## Configuration
+1. [Basic Number Conversion](#basic-number-conversion)
+2. [Date & Time](#date--time)
+3. [Advanced Features](#advanced-features)
+4. [Reverse Parsing](#reverse-parsing)
+5. [Fluent API](#fluent-api)
 
-**For Laravel 9.x, 10.x, 11.x, and 12.x:** No additional configuration needed! The package uses auto-discovery.
+---
 
-**For Laravel 8.x and below:** Add the service provider to `config/app.php`:
+## Basic Number Conversion
 
-```php
-'providers' => [
-    // ...
-    Rakibhstu\Banglanumber\NumberToBanglaServiceProvider::class,
-],
-```
-
-## Usage
-
+### Number to Bangla Digits
 ```php
 use Rakibhstu\Banglanumber\NumberToBangla;
 
 $numto = new NumberToBangla();
 
-// Convert number to Bangla word
-$text = $numto->bnWord(13459);    // Output: তেরো হাজার চার শত ঊনষাট
-$text = $numto->bnWord(1345.05);  // Output: এক হাজার তিন শত পঁয়তাল্লিশ দশমিক শূন্য পাঁচ
+echo $numto->bnNum(12345);
+// Output: ১২৩৪৫
+
+echo $numto->bnNum(1234.56);
+// Output: ১২৩৪.৫৬
 ```
 
-### Number to Bangla Word
-
-Use `bnWord()` to convert any number into Bangla word:
-
+### Number to Bangla Words
 ```php
-// Integer
-$text = $numto->bnWord(13459);
-// Output: তেরো হাজার চার শত ঊনষাট
+echo $numto->bnWord(12345);
+// Output: বারো হাজার তিন শত পঁয়তাল্লিশ
 
-// Float
-$text = $numto->bnWord(1345.05);
+echo $numto->bnWord(1345.05);
 // Output: এক হাজার তিন শত পঁয়তাল্লিশ দশমিক শূন্য পাঁচ
-
-$text = $numto->bnWord(345675.105);
-// Output: তিন লক্ষ পঁয়তাল্লিশ হাজার ছয় শত পঁচাত্তর দশমিক এক শূন্য পাঁচ
 ```
 
-### Number to Bangla Money Format
-
-Use `bnMoney()` to convert any number into Bangla money format with 'টাকা' & 'পয়সা':
-
+### Comma Separated (Lakh Format)
 ```php
-$text = $numto->bnMoney(13459);
-// Output: তেরো হাজার চার শত ঊনষাট টাকা
-
-$text = $numto->bnMoney(13459.05);
-// Output: তেরো হাজার চার শত ঊনষাট টাকা পাঁচ পয়সা
-
-$text = $numto->bnMoney(13459.5);
-// Output: তেরো হাজার চার শত ঊনষাট টাকা পঞ্চাশ পয়সা
+echo $numto->bnCommaLakh(1234567);
+// Output: ১২,৩৪,৫৬৭
 ```
 
-### Number to Bangla Number
-
-Use `bnNum()` to convert any number into Bangla number:
-
+### Percentage
 ```php
-$text = $numto->bnNum(13459);
-// Output: ১৩৪৫৯
+echo $numto->bnPercentage(75.5);
+// Output: ৭৫.৫%
 
-$text = $numto->bnNum(2334.768);
-// Output: ২৩৩৪.৭৬৮
+echo $numto->bnPercentage(75.5, asWord: true);
+// Output: পঁচাত্তর দশমিক পাঁচ শতাংশ
+```
+---
+
+## Currency Formatting
+
+### Money Format (Taka/Paisa)
+```php
+echo $numto->bnMoney(5000);
+// Output: পাঁচ হাজার টাকা
+
+echo $numto->bnMoney(5000.50);
+// Output: পাঁচ হাজার টাকা পঞ্চাশ পয়সা
 ```
 
-### Number to Month Name in Bangla
+---
 
-Use `bnMonth()` to get Bangla month name. Input range: 1-12
+## Date & Time
 
+### Month Names
 ```php
-$text = $numto->bnMonth(1);
+echo $numto->bnMonth(1);
 // Output: জানুয়ারি
 
-$text = $numto->bnMonth(4);
-// Output: এপ্রিল
+echo $numto->bnMonth(12);
+// Output: ডিসেম্বর
 ```
 
-### Comma Separated Number
-
-Use `bnCommaLakh()` to format numbers with comma in Bangla style:
-
+### Day Names
 ```php
-$text = $numto->bnCommaLakh(12121212);
-// Output: ১,২১,২১,২১২
+echo $numto->bnDay(1);
+// Output: রবিবার
+
+echo $numto->bnDay('monday');
+// Output: সোমবার
 ```
+
+### Time Formatting
+```php
+echo $numto->bnTime('14:30');
+// Output: দুপুর ২:৩০
+
+echo $numto->bnTime('14:30', asWord: true);
+// Output: দুপুর দুইটা ত্রিশ মিনিট
+
+echo $numto->bnTime('09:15', asWord: true);
+// Output: সকাল নয়টা পনেরো মিনিট
+```
+
+### Duration
+```php
+echo $numto->bnDuration(3665);
+// Output: ১ ঘন্টা ১ মিনিট ৫ সেকেন্ড
+
+echo $numto->bnDuration(90);
+// Output: ১ মিনিট ৩০ সেকেন্ড
+```
+
+### Bengali Calendar
+```php
+echo $numto->bnBengaliMonth(1);
+// Output: বৈশাখ
+
+echo $numto->bnSeason(1);
+// Output: গ্রীষ্ম
+
+echo $numto->bnSeason(5);
+// Output: শীত
+```
+
+### Age Calculator
+```php
+echo $numto->bnAge('1990-01-15');
+// Output: ৩৫ বছর
+
+echo $numto->bnAge('1990-01-15', detailed: true);
+// Output: ৩৫ বছর ২ মাস ৫ দিন
+```
+
+### Date Formatting
+```php
+echo $numto->bnDate('2024-01-15');
+// Output: ১৫ জানুয়ারি, ২০২৪
+
+---
+## Reverse Parsing
+
+### Parse Bangla Numbers to English
+```php
+$number = $numto->parseNum('১২৩৪৫');
+// Output: 12345
+
+$number = $numto->parseNum('১২,৩৪,৫৬৭');
+// Output: 1234567
+```
+
+## Fluent API
+
+### Beautiful Chaining
+```php
+$result = $numto->number(12345)
+                ->toBangla()
+                ->asWord()
+                ->withPrefix('মোট: ')
+                ->withSuffix(' টাকা')
+                ->get();
+// Output: মোট: বারো হাজার তিন শত পঁয়তাল্লিশ টাকা
+```
+
+### Different Formats
+```php
+// As percentage
+$result = $numto->number(75.5)
+                ->asPercentage(asWord: true)
+                ->get();
+// Output: পঁচাত্তর দশমিক পাঁচ শতাংশ
+
+```
+
+## Batch Processing
+
+### Convert Multiple Numbers
+```php
+$numbers = [100, 200, 300];
+$result = $numto->batch($numbers, 'bnNum');
+// Output: ['১০০', '২০০', '৩০০']
+
+$result = $numto->batch($numbers, 'bnWord');
+// Output: ['এক শত', 'দুই শত', 'তিন শত']
+```
+
+### With Associative Arrays
+```php
+$data = [
+    'revenue' => 500000,
+    'expenses' => 200000,
+    'profit' => 300000
+];
+
+$result = $numto->batchWithKeys($data, 'bnCurrency');
+// Output: [
+//   'revenue' => '৫ লক্ষ টাকা',
+//   'expenses' => '২ লক্ষ টাকা',
+//   'profit' => '৩ লক্ষ টাকা'
+// ]
+```
+
+---
+
+## API Integration
+
+### Convert to Array
+```php
+$result = $numto->toArray(12345);
+/* Output:
+[
+    'original' => 12345,
+    'bangla_number' => '১২৩৪৫',
+    'bangla_word' => 'বারো হাজার তিন শত পঁয়তাল্লিশ',
+    'money_format' => 'বারো হাজার তিন শত পঁয়তাল্লিশ টাকা',
+    'comma_format' => '১২,৩৪৫'
+]
+*/
+```
+
+### Convert to JSON
+```php
+$json = $numto->toJson(12345);
+// Returns UTF-8 encoded JSON string
+```
+
+### In API Controllers
+```php
+public function show($id)
+{
+    $product = Product::find($id);
+    
+    return response()->json([
+        'name' => $product->name,
+        'price' => NumberToBangla::convert($product->price),
+        'price_words' => NumberToBangla::words($product->price),
+        'discount' => [
+            'rate' => app(NumberToBangla::class)->bnPercentage($product->discount),
+            'amount' => NumberToBangla::money($product->discount_amount)
+        ],
+        'details' => app(NumberToBangla::class)->toArray($product->price)
+    ]);
+}
+```
+
+---
+
+## Static Helpers
+
+### Quick One-Liners
+```php
+use Rakibhstu\Banglanumber\NumberToBangla;
+
+// In controllers
+$banglaNumber = NumberToBangla::convert(12345);
+
+// In Blade
+{{ NumberToBangla::words($amount) }}
+{{ NumberToBangla::money($total) }}
+
+// In models
+public function getPriceAttribute($value)
+{
+    return NumberToBangla::convert($value);
+}
+```
+
+## Real-World Use Cases
+
+### E-Commerce
+```php
+$discount = $numto->bnPercentage(20);
+$final = $numto->bnMoney(20000);
+
+// Stock display
+$stock = $numto->bnWord(50) . ' পিস';
+```
+
+### Education
+```php
+$marks = $numto->bnNum(85);
+$percentage = $numto->bnPercentage(85);
+```
+
+### Official
+```php
+// Official documents
+$amount = $numto->bnMoney(50000);
+$date = $numto->bnDate('2024-01-15');
+$age = $numto->bnAge('1990-01-01');
+```
+
+
+---
+
+## Performance Tips
+
+1. **Batch Processing**: Use `batch()` for multiple conversions
+2. **Static Helpers**: Use for simple, one-off conversions
+3. **Fluent API**: Chain multiple operations efficiently
+
 
 ## Testing
 
@@ -145,7 +346,7 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 ## Security
 
-If you discover any security related issues, please email rakibdevs@gmail.com instead of using the issue tracker.
+If you discover any security related issues, please email rakib1708@gmail.com instead of using the issue tracker.
 
 ## Credits
 
