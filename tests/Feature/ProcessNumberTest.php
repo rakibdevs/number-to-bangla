@@ -4,7 +4,8 @@ namespace Rakibhstu\Banglanumber\Tests\Feature;
 
 use Rakibhstu\Banglanumber\NumberToBangla;
 use Rakibhstu\Banglanumber\Tests\TestCase;
-class NumberTest extends TestCase
+
+class ProcessNumberTest extends TestCase
 {
     protected $numto;
 
@@ -36,6 +37,34 @@ class NumberTest extends TestCase
     }
 
     /** @test */
+    public function it_converts_integer_to_bangla_money()
+    {
+        print_r($this->numto->bnMoney(13459));
+        $this->assertStringContainsString(
+            'ঊনষাট',
+            $this->numto->bnMoney(13459)
+        );
+    }
+
+    /** @test */
+    public function it_converts_float_money_with_two_decimals()
+    {
+        $this->assertStringContainsString(
+            'পয়সা',
+            $this->numto->bnMoney(13459.05)
+        );
+    }
+
+    /** @test */
+    public function it_converts_float_money_with_single_decimal()
+    {
+        $this->assertEquals(
+            'তেরো হাজার চার শত ঊনষাট টাকা পঞ্চাশ পয়সা',
+            $this->numto->bnMoney(13459.5)
+        );
+    }
+
+    /** @test */
     public function it_converts_zero_to_bangla()
     {
         $result = $this->numto->bnNum(0);
@@ -47,7 +76,7 @@ class NumberTest extends TestCase
     {
         $result = $this->numto->bnWord(123);
         $this->assertIsString($result);
-        $this->assertStringContainsString('একশ', $result);
+        $this->assertStringContainsString('এক শত', $result);
     }
 
     /** @test */
@@ -71,7 +100,7 @@ class NumberTest extends TestCase
     {
         $result = $this->numto->bnWord(10000000);
         $this->assertIsString($result);
-        $this->assertStringContainsString('করোড়', $result);
+        $this->assertStringContainsString('কোটি', $result);
     }
 
     /** @test */
@@ -110,7 +139,7 @@ class NumberTest extends TestCase
         $result = $this->numto->bnMoney(1000.50);
         $this->assertIsString($result);
         $this->assertStringContainsString('টাকা', $result);
-        $this->assertStringContainsString('পয়সা', $result);
+        $this->assertStringContainsString('পয়সা', $result);
     }
 
     /** @test */
@@ -118,7 +147,7 @@ class NumberTest extends TestCase
     {
         $result = $this->numto->bnMoney(5000);
         $this->assertStringContainsString('টাকা', $result);
-        $this->assertStringNotContainsString('পয়সা', $result);
+        $this->assertStringNotContainsString('পয়সা', $result);
     }
 
     /** @test */
