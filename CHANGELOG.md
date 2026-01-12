@@ -2,13 +2,16 @@
 
 All notable changes to `number-to-bangla` will be documented in this file.
 
-## [v2.0.0] - 2025-12-21
+## [v2.0.0] - 2026-01-12
 
 ### Added
+- Added new methods: `bnPercentage`, `parseNum`, `bnDay`, `bnTime`, `bnDuration`, `bnBengaliMonth`, `bnSeason`, `bnAge`
+- Introduced batch processing functionality
+- Added fluent API for method chaining
 - Support for Laravel 9.x, 10.x, 11.x, and 12.x
 - Support for PHP 8.0, 8.1, 8.2, 8.3, and 8.4
 - GitHub Actions CI workflow for automated testing
-- Updated PHPUnit configuration for PHPUnit 10+
+- Updated PHPUnit configuration for modern versions
 - Modern testing setup with Orchestra Testbench
 
 ### Changed
