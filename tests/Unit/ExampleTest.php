@@ -1,8 +1,8 @@
 <?php
 
-namespace Tests\Unit;
+namespace Rakibhstu\Banglanumber\Tests\Unit;
 
-use PHPUnit\Framework\TestCase;
+use Rakibhstu\Banglanumber\Tests\TestCase;
 
 class ExampleTest extends TestCase
 {

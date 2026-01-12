@@ -1,115 +1,362 @@
-## Number to Bangla Number, Word or Month Name in Laravel 
+# Number to Bangla Number, Word or Month Name in Laravel
 
-![Packagist](https://img.shields.io/packagist/dt/rakibhstu/number-to-bangla)
-[![GitHub stars](https://img.shields.io/github/stars/rakibul-dev/number-to-bangla)](https://github.com/rakibhstu/number-to-bangla/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/rakibul-dev/number-to-bangla)](https://github.com/rakibhstu/number-to-bangla/network)
-[![GitHub issues](https://img.shields.io/github/issues/rakibul-dev/number-to-bangla)](https://github.com/rakibhstu/number-to-bangla/issues)
-[![GitHub license](https://img.shields.io/github/license/rakibul-dev/number-to-bangla)](https://github.com/rakibhstu/number-to-bangla/blob/master/LICENSE)
-[![MadeWithLaravel.com shield](https://madewithlaravel.com/storage/repo-shields/2818-shield.svg)](https://madewithlaravel.com/p/number-to-bangla/shield-link) | [Get Wordpress Plugin](https://wordpress.org/plugins/number-to-bangla/)
+[![Packagist](https://img.shields.io/packagist/dt/rakibhstu/number-to-bangla)](https://packagist.org/packages/rakibhstu/number-to-bangla)
+[![GitHub stars](https://img.shields.io/github/stars/rakibdevs/number-to-bangla)](https://github.com/rakibdevs/number-to-bangla/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/rakibdevs/number-to-bangla)](https://github.com/rakibdevs/number-to-bangla/network)
+[![GitHub issues](https://img.shields.io/github/issues/rakibdevs/number-to-bangla)](https://github.com/rakibdevs/number-to-bangla/issues)
+[![GitHub license](https://img.shields.io/github/license/rakibdevs/number-to-bangla)](https://github.com/rakibdevs/number-to-bangla/blob/master/LICENSE)
+[![Tests](https://github.com/rakibdevs/number-to-bangla/workflows/Tests/badge.svg)](https://github.com/rakibdevs/number-to-bangla/actions)
 
+Laravel package to convert English numbers to Bangla number or Bangla text, Bangla month name and Bangla Money Format for **Laravel 9.x, 10.x, 11.x, and 12.x**. 
 
-Laravel package to convert English numbers to Bangla number or Bangla text, Bangla month name and Bangla Money Format for Laravel 5.5+. Maximum possible number to covert in Bangla word is 999999999999999
-Example,
+Maximum possible number to convert in Bangla word is **999999999999999**
+
+[Get Wordpress Plugin](https://wordpress.org/plugins/number-to-bangla/)
+
+## Features
+
 | Operation | English Input | Bangla Output |
 | --- | --- | --- |
-| Text (Integer) | 13459 |তেরো হাজার চার শত ঊনষাট|
-| Text (Float) | 1345.05 |এক হাজার তিন শত পঁয়তাল্লিশ দশমিক শূন্য পাঁচ|
-| Number | 1345.5 |১৩৪৫.৫|
-| Text Money Format | 1345.50 |এক হাজার তিন শত পঁয়তাল্লিশ টাকা পঞ্চাশ পয়সা|
-| Month | 12 |ডিসেম্বর|
-| Comma (Lakh) | 121212121 |১২,১২,১২,১২১|
+| Text (Integer) | 13459 | তেরো হাজার চার শত ঊনষাট |
+| Text (Float) | 1345.05 | এক হাজার তিন শত পঁয়তাল্লিশ দশমিক শূন্য পাঁচ |
+| Number | 1345.5 | ১৩৪৫.৫ |
+| Text Money Format | 1345.50 | এক হাজার তিন শত পঁয়তাল্লিশ টাকা পঞ্চাশ পয়সা |
+| Month | 12 | ডিসেম্বর |
+| Comma (Lakh) | 121212121 | ১২,১২,১২,১২১ |
 
+## Requirements
 
-## Installation
+- PHP 8.0 or higher
+- Laravel 9.x, 10.x, 11.x, or 12.x
 
-Install the package through [Composer](http://getcomposer.org).
-On the command line:
+# Complete Usage Guide - NumberToBangla v2.0
 
-```
-composer require rakibhstu/number-to-bangla
+## 🚀 Installation
 
-```
-
-
-## Configuration 
-If Laravel > v7.~, no need to add provider
-
-Add the following to your `providers` array in `config/app.php`:
-
-```php
-'providers' => [
-    // ...
-
-    Rakibhstu\Banglanumber\NumberToBanglaServiceProvider::class,
-],
+```bash
+composer require rakibhstu/number-to-bangla:^2.0
 ```
 
-## Usage
-Here you can see some example of just how simple this package is to use.
+## 📖 Table of Contents
 
+1. [Basic Number Conversion](#basic-number-conversion)
+2. [Date & Time](#date--time)
+3. [Advanced Features](#advanced-features)
+4. [Reverse Parsing](#reverse-parsing)
+5. [Fluent API](#fluent-api)
+
+---
+
+## Basic Number Conversion
+
+### Number to Bangla Digits
 ```php
 use Rakibhstu\Banglanumber\NumberToBangla;
 
 $numto = new NumberToBangla();
 
-// If you want to convert any number (Integer of Float) into Bangla Word
-$text = $numto->bnWord(13459);    // Output:  তেরো হাজার চার শত ঊনষাট
-$text = $numto->bnWord(1345.05);  // Output:  এক হাজার তিন শত পঁয়তাল্লিশ দশমিক শূন্য পাঁচ
+echo $numto->bnNum(12345);
+// Output: ১২৩৪৫
 
-
+echo $numto->bnNum(1234.56);
+// Output: ১২৩৪.৫৬
 ```
-### Number to Bangla Word 
-Use `bnWord()` to convert any number into bangla word. Example,
 
+### Number to Bangla Words
 ```php
+echo $numto->bnWord(12345);
+// Output: বারো হাজার তিন শত পঁয়তাল্লিশ
 
-// Integer
-$text = $numto->bnWord(13459);    // Output:  তেরো হাজার চার শত ঊনষাট
-
-// Float
-$text = $numto->bnWord(1345.05);    // Output: এক হাজার তিন শত পঁয়তাল্লিশ দশমিক শূন্য পাঁচ
-$text = $numto->bnWord(345675.105); // Output: তিন লক্ষ পঁয়তাল্লিশ হাজার ছয় শত পঁচাত্তর দশমিক এক শূন্য পাঁচ
-
-
+echo $numto->bnWord(1345.05);
+// Output: এক হাজার তিন শত পঁয়তাল্লিশ দশমিক শূন্য পাঁচ
 ```
 
-### Number to Bangla Money Format
-Use `bnMoney()` to convert any number into bangla money format with 'টাকা' & 'পয়সা'. Example,
-
+### Comma Separated (Lakh Format)
 ```php
-$text = $numto->bnMoney(13459);     // Output:  তেরো হাজার চার শত ঊনষাট টাকা
-$text = $numto->bnMoney(13459.05);  // Output:  তেরো হাজার চার শত ঊনষাট টাকা পাঁচ পয়সা
-$text = $numto->bnMoney(13459.5);   // Output:  তেরো হাজার চার শত ঊনষাট টাকা পঞ্চাশ পয়সা
-
+echo $numto->bnCommaLakh(1234567);
+// Output: ১২,৩৪,৫৬৭
 ```
 
-### Number to Bangla Number
-Use `bnNum()` to convert any number into bangla number. Example,
-
+### Percentage
 ```php
-$text = $numto->bnNum(13459);    // Output:  ১৩৪৫৯
-$text = $numto->bnNum(2334.768); // Output:  ২৩৩৪.৭৬৮
+echo $numto->bnPercentage(75.5);
+// Output: ৭৫.৫%
 
+echo $numto->bnPercentage(75.5, asWord: true);
+// Output: পঁচাত্তর দশমিক পাঁচ শতাংশ
 ```
+---
 
-### Number to Month Name in Bangla
-Use `bnMonth()` to convert any number into bangla number. Input Limit (1-12) Example,
+## Currency Formatting
 
+### Money Format (Taka/Paisa)
 ```php
-$text = $numto->bnMonth(1);    // Output:  জানুয়ারি 
-$text = $numto->bnMonth(4);    // Output:  এপ্রিল
+echo $numto->bnMoney(5000);
+// Output: পাঁচ হাজার টাকা
 
+echo $numto->bnMoney(5000.50);
+// Output: পাঁচ হাজার টাকা পঞ্চাশ পয়সা
 ```
 
-### Comma separated number
-Use `bnCommaLakh()` to convert any number into bangla number. Example,
+---
 
+## Date & Time
+
+### Month Names
 ```php
-$text = $numto->bnCommaLakh(12121212);    // Output:  ১,২১,২১,২১২
+echo $numto->bnMonth(1);
+// Output: জানুয়ারি
+
+echo $numto->bnMonth(12);
+// Output: ডিসেম্বর
 ```
 
+### Day Names
+```php
+echo $numto->bnDay(1);
+// Output: রবিবার
+
+echo $numto->bnDay('monday');
+// Output: সোমবার
+```
+
+### Time Formatting
+```php
+echo $numto->bnTime('14:30');
+// Output: দুপুর ২:৩০
+
+echo $numto->bnTime('14:30', asWord: true);
+// Output: দুপুর দুইটা ত্রিশ মিনিট
+
+echo $numto->bnTime('09:15', asWord: true);
+// Output: সকাল নয়টা পনেরো মিনিট
+```
+
+### Duration
+```php
+echo $numto->bnDuration(3665);
+// Output: ১ ঘন্টা ১ মিনিট ৫ সেকেন্ড
+
+echo $numto->bnDuration(90);
+// Output: ১ মিনিট ৩০ সেকেন্ড
+```
+
+### Bengali Calendar
+```php
+echo $numto->bnBengaliMonth(1);
+// Output: বৈশাখ
+
+echo $numto->bnSeason(1);
+// Output: গ্রীষ্ম
+
+echo $numto->bnSeason(5);
+// Output: শীত
+```
+
+### Age Calculator
+```php
+echo $numto->bnAge('1990-01-15');
+// Output: ৩৫ বছর
+
+echo $numto->bnAge('1990-01-15', detailed: true);
+// Output: ৩৫ বছর ২ মাস ৫ দিন
+```
+
+### Date Formatting
+```php
+echo $numto->bnDate('2024-01-15');
+// Output: ১৫ জানুয়ারি, ২০২৪
+
+---
+## Reverse Parsing
+
+### Parse Bangla Numbers to English
+```php
+$number = $numto->parseNum('১২৩৪৫');
+// Output: 12345
+
+$number = $numto->parseNum('১২,৩৪,৫৬৭');
+// Output: 1234567
+```
+
+## Fluent API
+
+### Beautiful Chaining
+```php
+$result = $numto->number(12345)
+                ->toBangla()
+                ->asWord()
+                ->withPrefix('মোট: ')
+                ->withSuffix(' টাকা')
+                ->get();
+// Output: মোট: বারো হাজার তিন শত পঁয়তাল্লিশ টাকা
+```
+
+### Different Formats
+```php
+// As percentage
+$result = $numto->number(75.5)
+                ->asPercentage(asWord: true)
+                ->get();
+// Output: পঁচাত্তর দশমিক পাঁচ শতাংশ
+
+```
+
+## Batch Processing
+
+### Convert Multiple Numbers
+```php
+$numbers = [100, 200, 300];
+$result = $numto->batch($numbers, 'bnNum');
+// Output: ['১০০', '২০০', '৩০০']
+
+$result = $numto->batch($numbers, 'bnWord');
+// Output: ['এক শত', 'দুই শত', 'তিন শত']
+```
+
+### With Associative Arrays
+```php
+$data = [
+    'revenue' => 500000,
+    'expenses' => 200000,
+    'profit' => 300000
+];
+
+$result = $numto->batchWithKeys($data, 'bnCurrency');
+// Output: [
+//   'revenue' => '৫ লক্ষ টাকা',
+//   'expenses' => '২ লক্ষ টাকা',
+//   'profit' => '৩ লক্ষ টাকা'
+// ]
+```
+
+---
+
+## API Integration
+
+### Convert to Array
+```php
+$result = $numto->toArray(12345);
+/* Output:
+[
+    'original' => 12345,
+    'bangla_number' => '১২৩৪৫',
+    'bangla_word' => 'বারো হাজার তিন শত পঁয়তাল্লিশ',
+    'money_format' => 'বারো হাজার তিন শত পঁয়তাল্লিশ টাকা',
+    'comma_format' => '১২,৩৪৫'
+]
+*/
+```
+
+### Convert to JSON
+```php
+$json = $numto->toJson(12345);
+// Returns UTF-8 encoded JSON string
+```
+
+### In API Controllers
+```php
+public function show($id)
+{
+    $product = Product::find($id);
+    
+    return response()->json([
+        'name' => $product->name,
+        'price' => NumberToBangla::convert($product->price),
+        'price_words' => NumberToBangla::words($product->price),
+        'discount' => [
+            'rate' => app(NumberToBangla::class)->bnPercentage($product->discount),
+            'amount' => NumberToBangla::money($product->discount_amount)
+        ],
+        'details' => app(NumberToBangla::class)->toArray($product->price)
+    ]);
+}
+```
+
+---
+
+## Static Helpers
+
+### Quick One-Liners
+```php
+use Rakibhstu\Banglanumber\NumberToBangla;
+
+// In controllers
+$banglaNumber = NumberToBangla::convert(12345);
+
+// In Blade
+{{ NumberToBangla::words($amount) }}
+{{ NumberToBangla::money($total) }}
+
+// In models
+public function getPriceAttribute($value)
+{
+    return NumberToBangla::convert($value);
+}
+```
+
+## Real-World Use Cases
+
+### E-Commerce
+```php
+$discount = $numto->bnPercentage(20);
+$final = $numto->bnMoney(20000);
+
+// Stock display
+$stock = $numto->bnWord(50) . ' পিস';
+```
+
+### Education
+```php
+$marks = $numto->bnNum(85);
+$percentage = $numto->bnPercentage(85);
+```
+
+### Official
+```php
+// Official documents
+$amount = $numto->bnMoney(50000);
+$date = $numto->bnDate('2024-01-15');
+$age = $numto->bnAge('1990-01-01');
+```
+
+
+---
+
+## Performance Tips
+
+1. **Batch Processing**: Use `batch()` for multiple conversions
+2. **Static Helpers**: Use for simple, one-off conversions
+3. **Fluent API**: Chain multiple operations efficiently
+
+
+## Testing
+
+```bash
+composer test
+```
+
+## Changelog
+
+Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
+
+## Contributing
+
+Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
+
+## Security
+
+If you discover any security related issues, please email rakib1708@gmail.com instead of using the issue tracker.
+
+## Credits
+
+- [Rakibul Islam](https://github.com/rakibdevs)
+- [All Contributors](../../contributors)
 
 ## License
 
-Number to Bangla is licensed under [The MIT License (MIT)](LICENSE).
+The MIT License (MIT). Please see [License File](LICENSE) for more information.
 
+## Support
+
+If you find this package helpful, please consider giving it a ⭐ on [GitHub](https://github.com/rakibdevs/number-to-bangla)!

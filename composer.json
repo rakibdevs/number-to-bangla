@@ -1,21 +1,34 @@
 {
     "name": "rakibhstu/number-to-bangla",
-    "description": "Laravel package to convert English numbers to Bangla number or Bangla text, Bangla month name and Bangla Money Format",
-    "keywords": ["laravel","bengali number","bangla","month"],
-    "homepage": "https://github.com/rakibdevs/number-to-bangla",
+    "description": "A Laravel package for converting English numbers into Bangla digits, Bangla words, Bangla month names, and Bangla money format with an easy-to-use API.",
+    "keywords": [
+        "laravel",
+        "laravel-package",
+        "php",
+        "bangla",
+        "bengali",
+        "number-to-bangla",
+        "number-to-word",
+        "bangla-number",
+        "bangla-money",
+        "bangla-month-name"
+    ],
+    "type": "library",
     "license": "MIT",
     "authors": [
         {
-            "name": "Md. Rakibul Islam",
-            "email": "rakib1708@gmail.com",
-            "homepage": "https://github.com/rakibdevs"
+            "name": "Rakibul Islam",
+            "email": "rakib1708@gmail.com"
         }
     ],
     "require": {
-        "php": "^8.1"
+        "php": "^8.0|^8.1|^8.2|^8.3|^8.4",
+        "illuminate/support": "^9.0|^10.0|^11.0|^12.0",
+        "nesbot/carbon": "^2.72|^3.11"
     },
     "require-dev": {
-        "phpunit/phpunit": "^9.5"
+        "orchestra/testbench": "^7.0|^8.0|^9.0|^10.0",
+        "phpunit/phpunit": "^9.5|^10.0|^11.0"
     },
     "autoload": {
         "psr-4": {
@@ -24,15 +37,22 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Rakibhstu\\Banglanumber\\Test\\": "tests"
+            "Rakibhstu\\Banglanumber\\Tests\\": "tests/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
                 "Rakibhstu\\Banglanumber\\NumberToBanglaServiceProvider"
-            ]
+            ],
+            "aliases": {
+                "NumberToBangla": "Rakibhstu\\Banglanumber\\NumberToBangla"
+            }
         }
     },
-    "minimum-stability": "stable"
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "scripts": {
+        "test": "vendor/bin/phpunit"
+    }
 }
