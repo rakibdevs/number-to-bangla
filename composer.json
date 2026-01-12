@@ -1,21 +1,24 @@
 {
     "name": "rakibhstu/number-to-bangla",
-    "description": "Laravel package to convert English numbers to Bangla number or Bangla text, Bangla month name and Bangla Money Format",
+    "description": "A Laravel package for converting English numbers into Bangla digits, Bangla words, Bangla month names, and Bangla money format with an easy-to-use API.",
     "keywords": [
         "laravel",
+        "laravel-package",
+        "php",
         "bangla",
-        "number-to-bangla-word",
-        "number-to-word",
+        "bengali",
         "number-to-bangla",
-        "larave-package",
-        "number-to-month-name-bangla"
+        "number-to-word",
+        "bangla-number",
+        "bangla-money",
+        "bangla-month-name"
     ],
     "type": "library",
     "license": "MIT",
     "authors": [
         {
             "name": "Rakibul Islam",
-            "email": "rakibdevs@gmail.com"
+            "email": "rakib1708@gmail.com"
         }
     ],
     "require": {
