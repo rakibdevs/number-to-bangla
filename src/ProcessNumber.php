@@ -149,7 +149,7 @@ class ProcessNumber
     {
         $this->isValid($number);
 
-        return strtr($number, $this->numbers);
+        return strtr($this->normalize($number), $this->numbers);
     }
 
 
@@ -165,15 +165,22 @@ class ProcessNumber
     {
         $this->isValid($number);
 
-        if ($number == 0) {
+        $number = $this->normalize($number);
+        $negative = str_starts_with($number, '-');
+        $number = ltrim($number, '+-');
+
+        if ($number === '0') {
             return 'শূন্য';
         }
 
-        if (is_float($number)) {
-            return $this->convertFloatNumberToWord($number);
+        if (str_contains($number, '.')) {
+            $parts = explode('.', $number, 2);
+            $integerText = $parts[0] === '0' ? 'শূন্য' : $this->toWord((int) $parts[0]);
+            $text = $integerText . ' দশমিক' . $this->toDecimalWord($parts[1]);
+            return ($negative ? 'ঋণাত্মক ' : '') . $text;
         }
 
-        return $this->toWord($number);
+        return ($negative ? 'ঋণাত্মক ' : '') . $this->toWord((int) $number);
     }
 
     /**
@@ -188,15 +195,29 @@ class ProcessNumber
     {
         $this->isValid($number);
 
-        if ($number == 0) {
+        $value = $this->normalize($number);
+        $negative = str_starts_with($value, '-');
+        $value = ltrim($value, '+-');
+        [$integer, $decimal] = array_pad(explode('.', $value, 2), 2, '');
+        $decimal = str_pad($decimal, 2, '0');
+        $cents = (int) substr($decimal, 0, 2);
+        if (isset($decimal[2]) && (int) $decimal[2] >= 5) {
+            $cents++;
+        }
+        $total = ((int) $integer * 100) + $cents;
+        $integer = intdiv($total, 100);
+        $cents = $total % 100;
+
+        if ($total === 0) {
             return 'শূন্য টাকা';
         }
 
-        if (is_float($number)) {
-            return $this->convertFloatNumberToMoneyFormat($number);
+        $text = ($integer === 0 ? 'শূন্য' : $this->toWord($integer)) . ' টাকা';
+        if ($cents > 0) {
+            $text .= ' ' . $this->toWord($cents) . ' পয়সা';
         }
 
-        return $this->toWord($number) . ' টাকা ';
+        return ($negative && $total > 0 ? 'ঋণাত্মক ' : '') . $text;
     }
 
     /**
@@ -211,9 +232,24 @@ class ProcessNumber
     {
         $this->isValid($number);
 
-        $n = preg_replace("/(\d+?)(?=(\d\d)+(\d)(?!\d))(\.\d+)?/i", "$1,", $number);
+        $value = $this->normalize($number);
+        $sign = str_starts_with($value, '-') ? '-' : '';
+        $value = ltrim($value, '+-');
+        [$integer, $decimal] = array_pad(explode('.', $value, 2), 2, null);
+        $last = substr($integer, -3);
+        $prefix = substr($integer, 0, -3);
+        $groups = [];
+        while ($prefix !== '') {
+            $groups[] = substr($prefix, -2);
+            $prefix = substr($prefix, 0, -2);
+        }
+        $n = implode(',', array_reverse($groups));
+        $n = ($n === '' ? '' : $n . ',') . $last;
+        if ($decimal !== null) {
+            $n .= '.' . $decimal;
+        }
 
-        return strtr($n, $this->numbers);
+        return strtr($sign . $n, $this->numbers);
     }
 
     /**
@@ -222,43 +258,33 @@ class ProcessNumber
      */
     protected function toWord($num): string
     {
+        $scales = [
+            10000000000000 => 'নীল',
+            100000000000 => 'খরব',
+            1000000000 => 'আরব',
+            10000000 => 'কোটি',
+            100000 => 'লক্ষ',
+            1000 => 'হাজার',
+        ];
         $text = '';
-        $crore = (int) ($num / 10000000);
-        if ($crore != 0) {
-            if ($crore > 99) {
-                $text .= $this->bnWord($crore) . ' কোটি ';
-            } else {
-                $text .= $this->words[$crore] . ' কোটি ';
+
+        foreach ($scales as $scale => $label) {
+            if ($num >= $scale) {
+                $count = intdiv($num, $scale);
+                $text .= ($count < 100 ? $this->words[$count] : $this->toWord($count)) . ' ' . $label . ' ';
+                $num %= $scale;
             }
         }
 
-        $croreDiv = $num % 10000000;
-
-        $lakh = (int) ($croreDiv / 100000);
-        if ($lakh > 0) {
-            $text .= $this->words[$lakh] . ' লক্ষ ';
+        if ($num >= 100) {
+            $text .= $this->words[intdiv($num, 100)] . ' শত ';
+            $num %= 100;
+        }
+        if ($num > 0) {
+            $text .= $this->words[$num];
         }
 
-        $lakhDiv = $croreDiv % 100000;
-
-        $thousand = (int) ($lakhDiv / 1000);
-        if ($thousand > 0) {
-            $text .= $this->words[$thousand] . ' হাজার ';
-        }
-
-        $thousandDiv = $lakhDiv % 1000;
-
-        $hundred = (int) ($thousandDiv / 100);
-        if ($hundred > 0) {
-            $text .= $this->words[$hundred] . ' শত ';
-        }
-
-        $hundredDiv = $thousandDiv % 100;
-        if ($hundredDiv > 0) {
-            $text .= $this->words[$hundredDiv];
-        }
-
-        return $text;
+        return trim($text);
     }
 
     /**
@@ -315,12 +341,34 @@ class ProcessNumber
     /**
      * Convert percentage to Bangla
      */
-    public function bnPercentage(int|float $number, bool $asWord = false): string
+    public function bnPercentage(int|float|string $number, bool $asWord = false): string
     {
         if ($asWord) {
             return $this->bnWord($number) . ' শতাংশ';
         }
         return $this->bnNum($number) . '%';
+    }
+
+    /** Convert an amount using the package's default BDT units. */
+    public function bnCurrency(int|float|string $number, string $unit = 'টাকা', string $subunit = 'পয়সা'): string
+    {
+        return str_replace(['টাকা', 'পয়সা'], [$unit, $subunit], $this->bnMoney($number));
+    }
+
+    /** Convert a number to a commonly used Bangla ordinal. */
+    public function bnOrdinal(int $number): string
+    {
+        $ordinals = [1 => 'প্রথম', 2 => 'দ্বিতীয়', 3 => 'তৃতীয়', 4 => 'চতুর্থ', 5 => 'পঞ্চম', 6 => 'ষষ্ঠ', 7 => 'সপ্তম', 8 => 'অষ্টম', 9 => 'নবম', 10 => 'দশম'];
+        return $ordinals[$number] ?? $this->bnWord($number) . 'তম';
+    }
+
+    protected function normalize($number): string
+    {
+        $value = trim((string) $number);
+        if (is_float($number)) {
+            $value = rtrim(rtrim(sprintf('%.14F', $number), '0'), '.');
+        }
+        return $value === '-0' ? '0' : $value;
     }
 
     /**

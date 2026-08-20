@@ -21,7 +21,10 @@ Maximum possible number to convert in Bangla word is **999999999999999**
 | Text (Float) | 1345.05 | এক হাজার তিন শত পঁয়তাল্লিশ দশমিক শূন্য পাঁচ |
 | Number | 1345.5 | ১৩৪৫.৫ |
 | Text Money Format | 1345.50 | এক হাজার তিন শত পঁয়তাল্লিশ টাকা পঞ্চাশ পয়সা |
+| Currency | 1500.25 | এক হাজার পাঁচ শত টাকা পঁচিশ পয়সা |
+| Ordinal | 1 | প্রথম |
 | Month | 12 | ডিসেম্বর |
+| Date | 2024-01-15 | ১৫ জানুয়ারি, ২০২৪ |
 | Comma (Lakh) | 121212121 | ১২,১২,১২,১২১ |
 
 ## Requirements
@@ -29,12 +32,12 @@ Maximum possible number to convert in Bangla word is **999999999999999**
 - PHP 8.0 or higher
 - Laravel 9.x, 10.x, 11.x, or 12.x
 
-# Complete Usage Guide - NumberToBangla v2.0
+# Complete Usage Guide - NumberToBangla v2.1
 
 ## 🚀 Installation
 
 ```bash
-composer require rakibhstu/number-to-bangla:^2.0
+composer require rakibhstu/number-to-bangla:^2.1
 ```
 
 ## 📖 Table of Contents
@@ -96,6 +99,9 @@ echo $numto->bnMoney(5000);
 
 echo $numto->bnMoney(5000.50);
 // Output: পাঁচ হাজার টাকা পঞ্চাশ পয়সা
+
+echo $numto->bnCurrency('1500.25');
+// Output: এক হাজার পাঁচ শত টাকা পঁচিশ পয়সা
 ```
 
 ---
@@ -165,6 +171,16 @@ echo $numto->bnAge('1990-01-15', detailed: true);
 ### Date Formatting
 ```php
 echo $numto->bnDate('2024-01-15');
+// Output: ১৫ জানুয়ারি, ২০২৪
+
+echo $numto->bnDate('2024-01-15', 'l, d F Y');
+// Output: সোমবার, ১৫ জানুয়ারি ২০২৪
+
+echo $numto->bnWeekNumber('2024-01-15');
+// Output: ৩
+
+echo $numto->bnOrdinal(1);
+// Output: প্রথম
 // Output: ১৫ জানুয়ারি, ২০২৪
 
 ---

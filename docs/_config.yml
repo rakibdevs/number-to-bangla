@@ -1,0 +1,21 @@
+title: Number to Bangla
+description: Complete documentation for the Number to Bangla Laravel package.
+url: https://rakibdevs.github.io
+baseurl: /number-to-bangla
+repository: rakibdevs/number-to-bangla
+
+theme: minima
+lang: en
+logo: false
+show_downloads: false
+
+header_pages:
+  - api.md
+  - upgrade-guide.md
+
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: default
+      author: Rakibul Islam

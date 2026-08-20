@@ -2,6 +2,20 @@
 
 All notable changes to `number-to-bangla` will be documented in this file.
 
+## [Unreleased]
+
+### 2.1.0
+- Added `bnDate()` with configurable built-in date formats.
+- Exposed `bnWeekNumber()` through the main API.
+- Added `bnCurrency()` and `bnOrdinal()`.
+- Added strict time validation and typed date/time exceptions.
+- Preserved decimal digits when converting numeric strings.
+- Added negative number and negative money support.
+- Improved money rounding to two paisa digits.
+- Corrected large-number word conversion with Bangladeshi scales through নীল.
+- Hardened malformed-number validation and lakh/crore formatting.
+- Removed inconsistent trailing whitespace from money output.
+
 ## [v2.0.0] - 2026-01-12
 
 ### Added

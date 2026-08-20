@@ -72,7 +72,7 @@ class NumberToBangla
      * @example bnPercentage(75.5) // Output: ৭৫.৫%
      * @example bnPercentage(75.5, true) // Output: পঁচাত্তর দশমিক পাঁচ শতাংশ
      */
-    public function bnPercentage(int|float $number, bool $asWord = false): string
+    public function bnPercentage(int|float|string $number, bool $asWord = false): string
     {
         return $this->processNumber->bnPercentage($number, $asWord);
     }
@@ -151,6 +151,26 @@ class NumberToBangla
     public function bnAge(string $birthDate, bool $detailed = false): string
     {
         return $this->processDate->bnAge($birthDate, $detailed);
+    }
+
+    public function bnWeekNumber(string $date): string
+    {
+        return $this->processDate->bnWeekNumber($date);
+    }
+
+    public function bnDate(string|\DateTimeInterface $date, string $format = 'd F, Y'): string
+    {
+        return $this->processDate->bnDate($date, $format);
+    }
+
+    public function bnCurrency(int|float|string $number, string $unit = 'টাকা', string $subunit = 'পয়সা'): string
+    {
+        return $this->processNumber->bnCurrency($number, $unit, $subunit);
+    }
+
+    public function bnOrdinal(int $number): string
+    {
+        return $this->processNumber->bnOrdinal($number);
     }
 
     /**
