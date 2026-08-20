@@ -16,13 +16,22 @@ trait NumberValidator
      *
      * @return void
      */
-    public function isValid($number)
+    public function isValid($number): void
     {
-        if (!is_numeric($number) || preg_match('/\.\d+\./', $number) || preg_match('/\d+E\d+/', $number)) {
+        if (is_bool($number) || $number === null || !is_scalar($number)) {
             throw new InvalidNumber();
         }
 
-        if (abs($number) > 999999999999999) {
+        $value = trim((string) $number);
+
+        if (!preg_match('/^[+-]?\d+(?:\.\d+)?$/', $value)) {
+            throw new InvalidNumber();
+        }
+
+        $integer = ltrim((string) preg_replace('/^[+-]/', '', explode('.', $value, 2)[0]), '0');
+        $integer = $integer === '' ? '0' : $integer;
+
+        if (strlen($integer) > 15 || (strlen($integer) === 15 && strcmp($integer, '999999999999999') > 0)) {
             throw new InvalidRange();
         }
     }

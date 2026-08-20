@@ -3,7 +3,9 @@
 namespace Rakibhstu\Banglanumber;
 
 use Carbon\Carbon;
-use Rakibhstu\Banglanumber\Exceptions\InvalidNumber;
+use DateTimeInterface;
+use Rakibhstu\Banglanumber\Exceptions\InvalidDate;
+use Rakibhstu\Banglanumber\Exceptions\InvalidTime;
 use Rakibhstu\Banglanumber\Exceptions\InvalidRange;
 
 class ProcessDate
@@ -79,9 +81,14 @@ class ProcessDate
      */
     public function bnTime(string $time, bool $asWord = false): string
     {
-        $timeParts = explode(':', $time);
-        $hours = (int)$timeParts[0];
-        $minutes = isset($timeParts[1]) ? (int)$timeParts[1] : 0;
+        if (!preg_match('/^(\d{1,2}):(\d{2})$/', trim($time), $matches)) {
+            throw new InvalidTime();
+        }
+        $hours = (int) $matches[1];
+        $minutes = (int) $matches[2];
+        if ($hours > 23 || $minutes > 59) {
+            throw new InvalidTime();
+        }
 
         $period = $this->getTimePeriod($hours);
         $displayHours = $hours > 12 ? $hours - 12 : ($hours === 0 ? 12 : $hours);
@@ -186,7 +193,7 @@ class ProcessDate
             
             return implode(' ', $parts);
         } catch (\Exception $e) {
-            return '';
+            throw new InvalidDate();
         }
     }
 
@@ -199,7 +206,30 @@ class ProcessDate
             $carbon = Carbon::parse($date);
             return $this->numberProcessor->bnNum($carbon->weekOfYear);
         } catch (\Exception $e) {
-            return '';
+            throw new InvalidDate();
+        }
+    }
+
+    /** Format a Gregorian date using Bangla digits and names. */
+    public function bnDate(string|DateTimeInterface $date, string $format = 'd F, Y'): string
+    {
+        try {
+            $carbon = $date instanceof DateTimeInterface ? Carbon::instance($date) : Carbon::parse($date);
+            $day = $this->numberProcessor->bnNum($carbon->format('d'));
+            $month = $this->month[(string) $carbon->month];
+            $year = $this->numberProcessor->bnNum($carbon->format('Y'));
+
+            return match ($format) {
+                'd F, Y' => $day . ' ' . $month . ', ' . $year,
+                'F d, Y' => $month . ' ' . $day . ', ' . $year,
+                'l, d F Y' => $this->bnDay(((int) $carbon->dayOfWeekIso % 7) + 1) . ', ' . $day . ' ' . $month . ' ' . $year,
+                'd/m/Y' => $day . '/' . $this->numberProcessor->bnNum($carbon->format('m')) . '/' . $year,
+                default => throw new InvalidDate(),
+            };
+        } catch (InvalidDate $e) {
+            throw $e;
+        } catch (\Exception $e) {
+            throw new InvalidDate();
         }
     }
 
