@@ -45,12 +45,18 @@ Version 2.1 combines numeric correctness, validation, decimal handling, date for
 
 ## Enable GitHub Pages
 
-The repository includes a GitHub Actions workflow at `.github/workflows/docs.yml`.
+This documentation is designed for GitHub Pages branch deployment from the `master` branch.
 
-In GitHub, open **Settings → Pages** and set **Source** to **GitHub Actions**. After the workflow completes, the site will be available at:
+In GitHub, open **Settings → Pages** and configure:
+
+- **Source:** Deploy from a branch
+- **Branch:** `master`
+- **Folder:** `/docs`
+
+After saving the settings, GitHub Pages will build the Jekyll site from the `docs/` directory. The site will be available at:
 
 ```text
 https://rakibdevs.github.io/number-to-bangla/
 ```
 
-The workflow deploys automatically when documentation changes are pushed to `main` or `master`. It can also be started manually from the **Actions** tab.
+New documentation changes are published when they are pushed to `master`. No GitHub Actions deployment workflow is required.
